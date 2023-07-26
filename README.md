@@ -31,7 +31,10 @@ Things you may want to cover:
 | nickname            | string         | null: false, unique: true        |
 | email               | string         | null: false , unique: true       |
 | encrypted_password  | string         | null: false                      |
-| name                | string         | null: false                      |
+| zen_lastname        | string         | null: false                      |
+| zen_firstname       | string         | null: false                      |
+| kana_firstname      | string         | null: false                      |
+| kana_lastname       | string         | null: false                      |
 | birthday            | integer        | null: false                      |
 
 ### Association
@@ -42,18 +45,16 @@ Things you may want to cover:
 ## itemsテーブル
 | Column              | Type            | Options                          |
 | ------------------- | --------------- | -------------------------------- |
-| item_image          | text            | null: false                      |
-| item_name           | string          | null: false                      |
-| item_description    | text            | null: false                      |
-| item_category       | string          | null: false                      |
-| item_category       | string          | null: false                      |
-| item_status         | string          | null: false                      |
-| item_shipmentfee    | string          | null: false                      |
-| sender_area         | string          | null: false                      |
-| waiting_day         | string          | null: false                      |
+| name                | string          | null: false                      |
+| description         | text            | null: false                      |
+| category_id         | integer         | null: false                      |
+| status_id           | integer         | null: false                      |
+| shipmentfee_id      | integer         | null: false                      |
+| senderarea_id       | integer         | null: false                      |
+| waitingday_id       | integer         | null: false                      |
 | item_price          | integer         | null: false                      |
 | user                | references      | null: false, foreign_key: true   |
-| seller              | string          | null: false                      |
+
 
 ### Association
 - belongs_to :user
@@ -62,9 +63,9 @@ Things you may want to cover:
 ## ordersテーブル
 | Column              | Type            | Options                          |
 | ------------------- | --------------- | -------------------------------- |
-| buyer               | string          | null: false                      |
 | user                | references      | null: false, foreign_key: true   |
 | item                | references      | null: false, foreign_key: true   |
+
 ### Association
 - belongs_to :user
 - belongs_to :item
@@ -73,12 +74,12 @@ Things you may want to cover:
 ## addressesテーブル
 | Column              | Type            | Options                          |
 | ------------------- | --------------- | -------------------------------- |
-| post_code           | integer         | null: false                      |
+| post_code           | string          | null: false                      |
 | prefecture          | string          | null: false                      |
 | town                | string          | null: false                      |
 | block_number        | string          | null: false                      |
 | building_name       | string          | null: false                      |
-| phone_number        | integer         | null: false                      |
+| phone_number        | string          | null: false                      |
 | user                | references      | null: false, foreign_key: true   |
 
 ### Association
