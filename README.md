@@ -28,14 +28,14 @@ Things you may want to cover:
 ## usersテーブル
 | Column              | Type           | Options                          |
 | ------------------- | -------------- | -------------------------------- |
-| nickname            | string         | null: false, unique: true        |
-| email               | string         | null: false , unique: true       |
+| nickname            | string         | null: false                      |
+| email               | string         | null: false, unique: true        |
 | encrypted_password  | string         | null: false                      |
 | zen_lastname        | string         | null: false                      |
 | zen_firstname       | string         | null: false                      |
 | kana_firstname      | string         | null: false                      |
 | kana_lastname       | string         | null: false                      |
-| birthday            | integer        | null: false                      |
+| birthday            | date           | null: false                      |
 
 ### Association
 - has_many :items
@@ -65,6 +65,7 @@ Things you may want to cover:
 | ------------------- | --------------- | -------------------------------- |
 | user                | references      | null: false, foreign_key: true   |
 | item                | references      | null: false, foreign_key: true   |
+| address             | references      | null: false, foreign_key: true   |
 
 ### Association
 - belongs_to :user
@@ -75,12 +76,11 @@ Things you may want to cover:
 | Column              | Type            | Options                          |
 | ------------------- | --------------- | -------------------------------- |
 | post_code           | string          | null: false                      |
-| prefecture          | string          | null: false                      |
+| prefecture_id       | integer         | null: false                      |
 | town                | string          | null: false                      |
 | block_number        | string          | null: false                      |
-| building_name       | string          | null: false                      |
+| building_name       | string          |                                  |
 | phone_number        | string          | null: false                      |
-| user                | references      | null: false, foreign_key: true   |
 
 ### Association
-- belongs_to :address
+- belongs_to :orders
