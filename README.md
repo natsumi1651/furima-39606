@@ -50,7 +50,7 @@ Things you may want to cover:
 | category_id         | integer         | null: false                      |
 | status_id           | integer         | null: false                      |
 | shipmentfee_id      | integer         | null: false                      |
-| senderarea_id       | integer         | null: false                      |
+| prefecture_id       | integer         | null: false                      |
 | waitingday_id       | integer         | null: false                      |
 | item_price          | integer         | null: false                      |
 | user                | references      | null: false, foreign_key: true   |
@@ -82,6 +82,7 @@ Things you may want to cover:
 | block_number        | string          | null: false                      |
 | building_name       | string          |                                  |
 | phone_number        | string          | null: false                      |
+| order               | references      | null: false, foreign_key: true   |
 
 ### Association
 - belongs_to :order
