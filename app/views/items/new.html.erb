@@ -12,6 +12,11 @@
     <%# //インスタンスを渡して、エラー発生時にメッセージが表示されるようにしましょう。%>
 
     <%# 商品画像 %>
+    <%= image_tag message.image.variant(resize: '500x500'), class: 'item-image' if message.image.attached? %>
+    <%# 7/30にactive storageだけ設定したので↑だけはった。クラスはまた任意で変えて %>
+
+
+
     <div class="img-upload">
       <div class="weight-bold-text">
         商品画像
