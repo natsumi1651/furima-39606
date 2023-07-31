@@ -113,7 +113,6 @@
       </li>
     </ul>
   </div>
- 
 
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
@@ -127,11 +126,7 @@
           <div class='item-img-content'>
             <%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
 
-            <%# 商品が売れていればsold outを表示しましょう %>
-            <div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div>
-            <%# //商品が売れていればsold outを表示しましょう %>
+          
 
           </div>
           <div class='item-info'>
@@ -152,8 +147,14 @@
         </li>
       <% end %>
 
+            <%# 商品が売れていればsold outを表示しましょう 次の実装の設定 %>
+            <%#div class='sold-out'>
+              <span>Sold Out!!</span>
+            </div>
+            <%# //商品が売れていればsold outを表示しましょう %>
 
-      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
+
+      <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう 次の実装の設定%>
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -176,7 +177,7 @@
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
-  <%# /商品一覧 %>
+  
 </div>
 <% if user_signed_in?  %>
   <%= link_to new_item_path, class: 'purchase-btn' do %>
