@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     less_than_or_equal_to: 9999999
   }
 
-  validates :item_price, format: { with: /\A[0-9]+\z/ }
+  
   validates :image, presence: true
 
   belongs_to :user
