@@ -120,32 +120,30 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-     <%  @items.each do |item| %>
-        <li class='list'>
-          <%= link_to "#" do %>
-          <div class='item-img-content'>
-            <%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
+      <%#<%  @items.each do |item| %>
+         <%#<li class='list'>
+           <%#<%= link_to "#" do %>
+           <%#<div class='item-img-content'>
+             <%#<%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
 
-          
+           <%#</div>
+           <%#<div class='item-info'>
+             <%#<h3 class='item-name'>
+               <%#<%= item.name %>
+             <%#</h3>
+             <%#<div class='item-price'>
+               <%#<span><%= item.item_price %> <%#<br> <% shipmentfee = Shipmentfee.find_by(id: item.shipmentfee_id) %>
+              <%#<span><%= shipmentfee&.name %> <%#</span> </span><br>
 
-          </div>
-          <div class='item-info'>
-            <h3 class='item-name'>
-              <%= item.name %>
-            </h3>
-            <div class='item-price'>
-              <span><%= item.item_price %>円<br> <% shipmentfee = Shipmentfee.find_by(id: item.shipmentfee_id) %>
-             <span><%= shipmentfee&.name %></span> </span><br>
-
-              <div class='star-btn'>
-                <%= image_tag "star.png", class:"star-icon" %>
-                <span class='star-count'>0</span>
-              </div>
-            </div>
-          </div>
-          <% end %>
-        </li>
-      <% end %>
+               <%#<div class='star-btn'>
+                 <%#<%= image_tag "star.png", class:"star-icon" %>
+                 <%#<span class='star-count'>0</span>
+               <%#</div>
+             <%#</div>
+           <%#</div>
+           <%#<% end %>
+         <%#</li>
+       <%#<% end %>
 
             <%# 商品が売れていればsold outを表示しましょう 次の実装の設定 %>
             <%#div class='sold-out'>

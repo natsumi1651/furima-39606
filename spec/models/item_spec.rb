@@ -33,7 +33,7 @@ RSpec.describe Item, type: :model do
       end 
 
       it 'カテゴリーが空では登録できない' do
-        @item.category = nil
+        @item.category = Category.find_by(id: 1)
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
      
@@ -41,31 +41,33 @@ RSpec.describe Item, type: :model do
 
 
       it '商品の状態が空では登録できない' do
-        @item.status = nil
+        @item.status = Status.find_by(id: 1)
         @item.valid?
         expect(@item.errors.full_messages).to include("Status can't be blank")
       end 
 
 
       it '配送料の負担が空では登録できない' do
-        @item.shipmentfee = nil
+        @item.shipmentfee = Shipmentfee.find_by(id: 1)
         @item.valid?
         expect(@item.errors.full_messages).to include("Shipmentfee can't be blank")
       end 
 
 
       it '発送元の地域が空では登録できない' do
-        @item.prefecture = nil
+        @item.prefecture = Prefecture.find_by(id: 1)
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end 
 
 
       it '発送までの日数が空では登録できない' do
-        @item.waitingday = nil
+        @item.waitingday = Waitingday.find_by(id: 1)
         @item.valid?
         expect(@item.errors.full_messages).to include("Waitingday can't be blank")
       end 
+
+
 
 
       it '販売価格が空では登録できない' do
@@ -90,12 +92,16 @@ RSpec.describe Item, type: :model do
         @item.item_price = '１００００'
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price is not a number")
-  
+      end
+      
+      it '販売価格が半角数値でないと登録できない' do
         @item.item_price = 'abc'
         @item.valid?
         expect(@item.errors.full_messages).to include("Item price is not a number")
       end 
 
+
+      
       it 'ユーザーが紐付いていなければ投稿できない' do
         @item.user = nil
         @item.valid?
