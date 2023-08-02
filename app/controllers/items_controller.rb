@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :no_edit_authority, only: :edit
 
   def index
@@ -21,11 +21,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-   
   end
 
   def edit
-  
   end
 
   def update
@@ -33,6 +31,15 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item)
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if current_user.id == @item.user_id
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
@@ -45,6 +52,7 @@ class ItemsController < ApplicationController
 
   def move_to_index
     return if user_signed_in?
+
     redirect_to new_user_session_path
   end
 
