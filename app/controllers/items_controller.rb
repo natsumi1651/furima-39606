@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :set_item, only: [:edit, :update]
+  before_action :no_edit_authority, only: :edit
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -22,6 +24,19 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+   @item = Item.find(params[:id])
+    if @item.update(item_params)
+      redirect_to item_path(@item)
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def item_params
@@ -31,7 +46,17 @@ class ItemsController < ApplicationController
 
   def move_to_index
     return if user_signed_in?
-
     redirect_to new_user_session_path
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def no_edit_authority
+   unless @item.user == current_user
+    redirect_to root_path
+   end
+  end
+
 end
