@@ -11,12 +11,12 @@ class OrderAddress
 
   end
   validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  def save
-    
-    order = Order.create(item_id: item_id, user_id: user_id)
+  validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: "should be in the format 3 digits - 4 digits" }
+  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: "should be 10 to 11 digits" }
 
-    Address.create(post_code: post_code, prefecture_id: prefecture_id, town: town, block_number: block_number, building_name: building_name, phone_number:phone_number, order_id: order.id)
-    
+  def save
+    order = Order.create(item_id: item_id, user_id: user_id)
+    Address.create(post_code: post_code, prefecture_id: prefecture_id, town: town, block_number: block_number, building_name: building_name, phone_number: phone_number, order_id: order.id)  
   end
 
 end

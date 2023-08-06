@@ -62,7 +62,6 @@ class ItemsController < ApplicationController
 
   def no_edit_authority
     return if @item.user == current_user
-
     redirect_to root_path
   end
 end
