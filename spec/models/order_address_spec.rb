@@ -18,7 +18,7 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'post_codeが「3桁ハイフン4桁」の形式なら保存できること' do
-        valid_post_codes = ['123-4567', '456-7890', '001-0010']
+        valid_post_codes = %w[123-4567 456-7890 001-0010]
         valid_post_codes.each do |post_code|
           @order_address.post_code = post_code
           expect(@order_address).to be_valid
@@ -26,13 +26,12 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数値なら保存できること' do
-        valid_phone_numbers = ['1234567890', '09876543210', '12345678901']
+        valid_phone_numbers = %w[1234567890 09876543210 12345678901]
         valid_phone_numbers.each do |phone_number|
           @order_address.phone_number = phone_number
           expect(@order_address).to be_valid
         end
       end
-
     end
 
     context '内容に問題がある場合' do
@@ -43,14 +42,14 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'post_codeが「3桁ハイフン4桁」の形式でないと保存できないこと' do
-        invalid_post_codes = ['1234567', '12-34567', '123-45678', 'aaa-bbbb']
+        invalid_post_codes = %w[1234567 12-34567 123-45678 aaa-bbbb]
         invalid_post_codes.each do |post_code|
           @order_address.post_code = post_code
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Post code should be in the format 3 digits - 4 digits")
+          expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
         end
       end
-     
+
       it 'prefecture_idがid: 1だと保存できないこと' do
         @order_address.prefecture_id = 1
         @order_address.valid?
@@ -76,11 +75,11 @@ RSpec.describe OrderAddress, type: :model do
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数値でないと保存できないこと' do
-        invalid_phone_numbers = ['123456789', '123456789012', 'abc', '123-4567']
+        invalid_phone_numbers = %w[123456789 123456789012 abc 123-4567]
         invalid_phone_numbers.each do |phone_number|
           @order_address.phone_number = phone_number
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Phone number should be 10 to 11 digits")
+          expect(@order_address.errors.full_messages).to include('Phone number should be 10 to 11 digits')
         end
       end
 
@@ -96,12 +95,11 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("User can't be blank")
       end
 
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_address.token = nil
         @order_address.valid?
         expect(@order_address.errors.full_messages).to include("Token can't be blank")
       end
-
     end
   end
 end
