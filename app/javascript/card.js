@@ -1,7 +1,6 @@
-console.log("card")
 const pay = () => {
-  console.log("ok")
-  const payjp = Payjp('pk_test_81cee47978c9ac7a902721f7')
+  const publicKey = gon.public_key
+  const payjp = Payjp(publicKey)
   const elements = payjp.elements();
   const numberElement = elements.create('cardNumber');
   const expiryElement = elements.create('cardExpiry');
@@ -10,7 +9,6 @@ const pay = () => {
   numberElement.mount('#number-form');
   expiryElement.mount('#expiry-form');
   cvcElement.mount('#cvc-form');
-console.log("ok")
 
   const form = document.getElementById('charge-form')
   form.addEventListener("submit", (e) => {
