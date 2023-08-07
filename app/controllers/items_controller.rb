@@ -53,7 +53,6 @@ class ItemsController < ApplicationController
 
   def move_to_index
     return if user_signed_in?
-
     redirect_to new_user_session_path
   end
 
@@ -63,13 +62,11 @@ class ItemsController < ApplicationController
 
   def no_edit_authority
     return if @item.user == current_user
-
     redirect_to root_path
   end
 
   def no_longer_there
-    return unless @item.order && @item.user == current_user
-
+    return if @item.order && @item.user == current_user
     redirect_to root_path
   end
 end
