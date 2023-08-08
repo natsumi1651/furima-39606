@@ -61,12 +61,14 @@ class ItemsController < ApplicationController
   end
 
   def no_edit_authority
-    return if @item.user == current_user
-    redirect_to root_path
+    if @item.user != current_user
+     redirect_to root_path
+    end
   end
 
   def no_longer_there
-    return if @item.order && @item.user == current_user
-    redirect_to root_path
+    if @item.order
+     redirect_to root_path
+    end
   end
 end
