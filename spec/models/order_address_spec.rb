@@ -17,6 +17,7 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address).to be_valid
       end
 
+      
       it 'post_codeが「3桁ハイフン4桁」の形式なら保存できること' do
         valid_post_codes = %w[123-4567 456-7890 001-0010]
         valid_post_codes.each do |post_code|
@@ -32,6 +33,7 @@ RSpec.describe OrderAddress, type: :model do
           expect(@order_address).to be_valid
         end
       end
+      
     end
 
     context '内容に問題がある場合' do
@@ -41,15 +43,33 @@ RSpec.describe OrderAddress, type: :model do
         expect(@order_address.errors.full_messages).to include("Post code can't be blank")
       end
 
+
       it 'post_codeが「3桁ハイフン4桁」の形式でないと保存できないこと' do
-        invalid_post_codes = %w[1234567 12-34567 123-45678 aaa-bbbb]
-        invalid_post_codes.each do |post_code|
-          @order_address.post_code = post_code
-          @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
-        end
+        @order_address.post_code = 1234567
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
       end
 
+      it 'post_codeが「3桁ハイフン4桁」の形式でないと保存できないこと' do
+        @order_address.post_code = 12-34567
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
+      end
+
+      it 'post_codeが「3桁ハイフン4桁」の形式でないと保存できないこと' do
+        @order_address.post_code = 123-45678
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
+      end
+
+      it 'post_codeが「3桁ハイフン4桁」の形式でないと保存できないこと' do
+        @order_address.post_code = 'aaa-bbbb'
+        @order_address.valid?
+        expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
+      end
+
+
+      
       it 'prefecture_idがid: 1だと保存できないこと' do
         @order_address.prefecture_id = 1
         @order_address.valid?

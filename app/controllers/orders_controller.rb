@@ -2,10 +2,8 @@ class OrdersController < ApplicationController
   before_action :move_to_index, only: :index
   before_action :no_valid_deal
 
-  def index
-    
+  def index 
     @order_address = OrderAddress.new
-   
   end
 
   def new
@@ -26,7 +24,7 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order_address).permit(:item_id, :post_code, :prefecture_id, :town, :block_number, :building_name, :phone_number).merge(
+    params.require(:order_address).permit(:post_code, :prefecture_id, :town, :block_number, :building_name, :phone_number).merge(
       user_id: current_user.id, item_id: params[:item_id], token: params[:token]
     )
   end

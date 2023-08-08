@@ -5,8 +5,6 @@ FactoryBot.define do
     town { 'あああ' }
     block_number { '1-1' }
     phone_number { '0000000000' }
-    association :user
-    association :item
     token { 'tok_abcdefghijk00000000000000000' }
   end
 end
