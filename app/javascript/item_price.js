@@ -1,8 +1,12 @@
- const priceInput = document.getElementById("item-price");
+window.addEventListener("turbo:load", () => {
+
+
+const priceInput = document.getElementById("item-price");
+
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
     const addTaxDom = document.getElementById("add-tax-price");
-    const addProfitDom = document.getElementById("profit"); 
+    const addProfitDom = document.getElementById("profit");
     
    if (inputValue !== "") {
     const price = parseInt(inputValue, 10);
@@ -17,3 +21,5 @@
     addProfitDom.innerHTML = "";
   }
  })
+});
+

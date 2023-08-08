@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :no_edit_authority, only: :edit
+  before_action :no_longer_there, only: :edit
 
   def index
     @items = Item.all.order('created_at DESC')
@@ -52,7 +53,6 @@ class ItemsController < ApplicationController
 
   def move_to_index
     return if user_signed_in?
-
     redirect_to new_user_session_path
   end
 
@@ -62,7 +62,11 @@ class ItemsController < ApplicationController
 
   def no_edit_authority
     return if @item.user == current_user
+    redirect_to root_path
+  end
 
+  def no_longer_there
+    return if @item.order && @item.user == current_user
     redirect_to root_path
   end
 end

@@ -124,36 +124,36 @@
       <%  @items.each do |item| %>
           <li class='list'>
             <%= link_to item_path(item.id) do %>
-            <div class='item-img-content'>
-              <%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
-            </div>
+              <div class='item-img-content'>
+                <%= image_tag item.image.variant(resize: '500x500'), class: 'item-img' if item.image.attached? %>
 
-              <%#ここにsold out設定%>
+                <% if item.order %>
+                  <div class='sold-out'>
+                  <span>Sold Out!!</span>
+                  </div>
+                <% end %> 
+                
+              </div>
+              
 
-                <div class='item-info'>
-                    <h3 class='item-name'>
-                      <%= item.name %>
-                    </h3>
-                    <div class='item-price'>
-                      <span><%= item.item_price %>円<br> <% shipmentfee = Shipmentfee.find_by(id: item.shipmentfee_id) %>
-                      <span><%= item.shipmentfee.name %></span> </span><br>
+              <div class='item-info'>
+                  <h3 class='item-name'>
+                    <%= item.name %>
+                  </h3>
+                  <div class='item-price'>
+                    <span><%= item.item_price %>円<br> <% shipmentfee = Shipmentfee.find_by(id: item.shipmentfee_id) %>
+                    <span><%= item.shipmentfee.name %></span> </span><br>
 
-                      <div class='star-btn'>
-                        <%= image_tag "star.png", class:"star-icon" %>
-                        <span class='star-count'>0</span>
-                      </div>
+                    <div class='star-btn'>
+                      <%= image_tag "star.png", class:"star-icon" %>
+                      <span class='star-count'>0</span>
                     </div>
-                </div>
+                  </div>
+              </div>
             <% end %>
+
           </li>
       <% end %>
-
-
-            <%# 商品が売れていればsold outを表示しましょう 次の実装の設定 %>
-            <%#div class='sold-out'>
-              <span>Sold Out!!</span>
-            </div>
-            <%# //商品が売れていればsold outを表示しましょう %>
 
 
       <%if @items.empty?%>
@@ -182,7 +182,7 @@
   
 </div>
 <% if user_signed_in?  %>
-  <%= link_to new_item_path, class: 'purchase-btn' do %>
+  <%= link_to new_item_path,data: { turbo: false }, class: 'purchase-btn' do %>
     <span class='purchase-btn-text'>出品する</span>
     <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
   <% end %>
