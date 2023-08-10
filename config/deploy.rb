@@ -2,7 +2,7 @@ lock '3.17.3'
 
 set :application, 'furima-39606'
 
-set :repo_url,  'natsumi1651/furima-39606'
+set :repo_url,  'git@github.com:natsumi1651/furima-39606.git'
 set :branch, 'main'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
