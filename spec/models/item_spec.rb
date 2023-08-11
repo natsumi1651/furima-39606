@@ -33,31 +33,31 @@ RSpec.describe Item, type: :model do
       it 'カテゴリーが空では登録できない' do
         @item.category = Category.find_by(id: 1)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category は空欄にはできません。")
       end
 
       it '商品の状態が空では登録できない' do
         @item.status = Status.find_by(id: 1)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Status can't be blank")
+        expect(@item.errors.full_messages).to include("Status は空欄にはできません。")
       end
 
       it '配送料の負担が空では登録できない' do
         @item.shipmentfee = Shipmentfee.find_by(id: 1)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Shipmentfee can't be blank")
+        expect(@item.errors.full_messages).to include("Shipmentfee は空欄にはできません。")
       end
 
       it '発送元の地域が空では登録できない' do
         @item.prefecture = Prefecture.find_by(id: 1)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@item.errors.full_messages).to include("Prefecture は空欄にはできません。")
       end
 
       it '発送までの日数が空では登録できない' do
         @item.waitingday = Waitingday.find_by(id: 1)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Waitingday can't be blank")
+        expect(@item.errors.full_messages).to include("Waitingday は空欄にはできません。")
       end
 
       it '販売価格が空では登録できない' do

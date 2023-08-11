@@ -14,7 +14,7 @@ class OrderAddress
 
   validates :prefecture_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
   validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'は、3または4桁でないといけません' }
-  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は、10または11桁出ないといけません。' }
+  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は、10または11桁でないといけません。' }
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

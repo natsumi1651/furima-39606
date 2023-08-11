@@ -47,14 +47,14 @@ RSpec.describe OrderAddress, type: :model do
         invalid_post_codes.each do |post_code|
           @order_address.post_code = post_code
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Post code should be in the format 3 digits - 4 digits')
+          expect(@order_address.errors.full_messages).to include('Post code は、3または4桁でないといけません')
         end
       end
 
       it 'prefecture_idがid: 1だと保存できないこと' do
         @order_address.prefecture_id = 1
         @order_address.valid?
-        expect(@order_address.errors.full_messages).to include("Prefecture can't be blank")
+        expect(@order_address.errors.full_messages).to include("Prefecture は空欄にはできません。")
       end
 
       it 'townが空だと保存できないこと' do
@@ -78,25 +78,25 @@ RSpec.describe OrderAddress, type: :model do
       it 'phone_numberが10桁以上11桁以内の半角数値でないと保存できないこと' do
           @order_address.phone_number = 123456789
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number should be 10 to 11 digits')
+          expect(@order_address.errors.full_messages).to include('Phone number は、10または11桁でないといけません。')
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数値でないと保存できないこと' do
           @order_address.phone_number = 123456789012
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number should be 10 to 11 digits')
+          expect(@order_address.errors.full_messages).to include('Phone number は、10または11桁でないといけません。')
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数値でないと保存できないこと' do
           @order_address.phone_number = 'abc'
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number should be 10 to 11 digits')
+          expect(@order_address.errors.full_messages).to include('Phone number は、10または11桁でないといけません。')
       end
 
       it 'phone_numberが10桁以上11桁以内の半角数値でないと保存できないこと' do
           @order_address.phone_number = 123-4567
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include('Phone number should be 10 to 11 digits')
+          expect(@order_address.errors.full_messages).to include('Phone number は、10または11桁でないといけません。')
       end
 
       it 'itemが紐付いていないと保存できないこと' do
