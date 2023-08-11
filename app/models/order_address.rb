@@ -12,9 +12,9 @@ class OrderAddress
     validates :token
   end
 
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'should be in the format 3 digits - 4 digits' }
-  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'should be 10 to 11 digits' }
+  validates :prefecture_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
+  validates :post_code, format: { with: /\A\d{3}-\d{4}\z/, message: 'は、3または4桁でないといけません' }
+  validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'は、10または11桁出ないといけません。' }
 
   def save
     order = Order.create(item_id: item_id, user_id: user_id)

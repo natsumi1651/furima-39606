@@ -9,11 +9,11 @@ class Item < ApplicationRecord
   has_one_attached :image
   validates :name, presence: true
   validates :description, presence: true
-  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :status_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :shipmentfee_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :waitingday_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :category_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
+  validates :status_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
+  validates :shipmentfee_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
+  validates :waitingday_id, numericality: { other_than: 1, message: "は空欄にはできません。" }
   validates :item_price, presence: true, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 300,
